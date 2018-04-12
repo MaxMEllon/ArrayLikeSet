@@ -4,9 +4,9 @@ export default class ArrayLikeSet extends Set {
   map(func) {
     if (!isFunc(func)) throw new TypeError('Expected function')
     let index = 0
-    const result = []
+    const result = new ArrayLikeSet()
     for (const [i, _] of super.entries()) {
-      result.push(func(i, index))
+      result.add(func(i, index))
     }
     return result
   }
@@ -14,10 +14,10 @@ export default class ArrayLikeSet extends Set {
   filter(func) {
     if (!isFunc(func)) throw new TypeError('Expected function')
     let index = 0
-    const result = []
+    const result = new ArrayLikeSet()
     for (const [i, _] of super.entries()) {
       const r = func(i, index)
-      if (r) result.push(i)
+      if (r) result.add(i)
     }
     return result
   }
